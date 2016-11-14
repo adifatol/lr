@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<script src="lr.js"></script>
+
+<body>
+    <div>Equation:  Y = b + a*x</div>
+    <div>Our Model:  Y = <span id="c_b"></span> + <span id="c_a"></span>*x</div>
+    <div>Input <input type="text" id="test_input" value="54"><input type="button" onclick="predict(); return false;" value="Predict"></div>
+    <div>Prediction for 54 mp = <span id="c_y"></span></div>
+</body>
+
+<script type="text/javascript">
+var known_y = [55000,60000,57000,60000,70000,70000,60000,55000,74000,72000,80000,65000,75000,75000,72000,80000,95000,73000,93500,88500,90000];
+var known_x = [41,45,48,50,52,53,56,57,60,60,64,65,65,65,67,68,68,69,70,70,70];
+
+var lr = linearRegression(known_y, known_x);
+
+function predict() {
+    c_x = document.getElementById("test_input").value;
+    c_y = lr.intercept + lr.slope * c_x;
+    document.getElementById("c_y").innerHTML = c_y;
+    console.log(c_y);
+}
+document.getElementById("c_b").innerHTML = lr.intercept;
+document.getElementById("c_a").innerHTML = lr.slope;
+
+predict();
+</script>
+
+</html>
